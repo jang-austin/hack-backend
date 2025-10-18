@@ -51,6 +51,7 @@ class TestValidationFunctions:
         assert validate_name('John')[0] is True
         assert validate_name('Jane Doe')[0] is True
         assert validate_name('A' * 100)[0] is True
+        assert validate_name('  John  ')[0] is True  # Whitespace should be trimmed
     
     def test_validate_name_invalid(self):
         """Test invalid names"""
@@ -58,6 +59,7 @@ class TestValidationFunctions:
         assert validate_name('   ')[0] is False
         assert validate_name('A')[0] is False
         assert validate_name('A' * 101)[0] is False
+        assert validate_name('  A  ' * 51)[0] is False  # Over 100 chars with whitespace
 
 
 class TestFormEndpoint:

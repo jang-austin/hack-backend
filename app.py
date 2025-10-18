@@ -39,11 +39,13 @@ def validate_name(name):
     if not name or not name.strip():
         return False, "Name is required"
     
-    if len(name) < 2:
+    name_stripped = name.strip()
+    
+    if len(name_stripped) < 2:
         return False, "Name must be at least 2 characters long"
     
-    if len(name) > 100:
-        return False, "Name must be less than 100 characters"
+    if len(name_stripped) > 100:
+        return False, "Name must be 100 characters or less"
     
     return True, "Valid"
 
