@@ -25,6 +25,11 @@ python app.py
 
 The application will start on `http://localhost:5000`
 
+**Note**: By default, the application runs in production mode (debug=False). To enable debug mode for development, set the `FLASK_DEBUG` environment variable:
+```bash
+FLASK_DEBUG=true python app.py
+```
+
 ## API Endpoints
 
 ### GET /
