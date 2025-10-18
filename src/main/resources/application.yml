@@ -21,5 +21,11 @@ management:
 
 logging:
   level:
+    root: DEBUG
     com.hack: DEBUG
     org.springframework.web: DEBUG
+    org.springframework.boot: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.transaction: DEBUG
+    org.hibernate: DEBUG
+    org.springframework.jdbc: DEBUG
