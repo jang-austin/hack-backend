@@ -70,6 +70,15 @@ mvn spring-boot:run
 ./stop-all-with-monitoring.sh
 ```
 
+### Render 배포
+
+```bash
+# GitHub에 push 후 Render에서 자동 배포
+git push origin main
+```
+
+자세한 배포 가이드는 [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md)를 참조하세요.
+
 ## 모니터링
 
 - **Zipkin 분산 추적**: http://localhost:9411

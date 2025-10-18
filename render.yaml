@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: hack-backend
+    env: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/hack-backend-1.0.0.jar
+    healthCheckPath: /api/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+      - key: PORT
+        value: 10000
