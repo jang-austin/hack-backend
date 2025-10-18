@@ -2,6 +2,8 @@ package com.hack.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -9,6 +11,8 @@ import java.util.concurrent.atomic.AtomicReference;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class ButtonController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ButtonController.class);
 
     // 맨 처음과 마지막 사람을 저장하는 변수들
     private static final AtomicReference<String> firstPerson = new AtomicReference<>(null);
@@ -28,25 +32,25 @@ public class ButtonController {
                 // 마지막 사람 업데이트 (항상 업데이트됨)
                 lastPerson.set(nickname);
                 
-                System.out.println("=== 보라색 버튼 확률 당첨! (hack-backend) ===");
-                System.out.println("당첨자: " + nickname);
+                logger.info("=== 보라색 버튼 확률 당첨! (hack-backend) ===");
+                logger.info("당첨자: {}", nickname);
                 if (buttonType != null) {
-                    System.out.println("버튼 타입: " + buttonType);
+                    logger.info("버튼 타입: {}", buttonType);
                 }
                 
                 // 맨 처음과 마지막 사람 정보 출력
-                System.out.println("--- 해킹 통계 ---");
-                System.out.println("맨 처음 당첨자: " + (firstPerson.get() != null ? firstPerson.get() : "아직 없음"));
-                System.out.println("마지막 당첨자: " + (lastPerson.get() != null ? lastPerson.get() : "아직 없음"));
-                System.out.println("================================");
+                logger.info("--- 해킹 통계 ---");
+                logger.info("맨 처음 당첨자: {}", firstPerson.get() != null ? firstPerson.get() : "아직 없음");
+                logger.info("마지막 당첨자: {}", lastPerson.get() != null ? lastPerson.get() : "아직 없음");
+                logger.info("================================");
                 
                 return ResponseEntity.ok("버튼 클릭 이벤트가 성공적으로 처리되었습니다.");
             } else {
-                System.out.println("닉네임이 제공되지 않았습니다.");
+                logger.warn("닉네임이 제공되지 않았습니다.");
                 return ResponseEntity.badRequest().body("닉네임이 필요합니다.");
             }
         } catch (Exception e) {
-            System.err.println("버튼 클릭 처리 중 오류 발생: " + e.getMessage());
+            logger.error("버튼 클릭 처리 중 오류 발생: {}", e.getMessage(), e);
             return ResponseEntity.internalServerError().body("서버 오류가 발생했습니다.");
         }
     }
