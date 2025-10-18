@@ -59,7 +59,7 @@ class TestValidationFunctions:
         assert validate_name('   ')[0] is False
         assert validate_name('A')[0] is False
         assert validate_name('A' * 101)[0] is False
-        assert validate_name('  A  ' * 51)[0] is False  # Over 100 chars with whitespace
+        assert validate_name('  ' + 'A' * 101 + '  ')[0] is False  # Over 100 chars after trimming
 
 
 class TestFormEndpoint:
